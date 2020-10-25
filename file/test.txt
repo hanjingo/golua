@@ -1,0 +1,23 @@
+package io
+
+import (
+	glua "github.com/yuin/gopher-lua"
+)
+
+func Preload(state *glua.LState) {
+	state.PreloadModule("io", Loader)
+}
+
+func Loader(state *glua.LState) int {
+	tb := state.NewTable()
+	state.SetFuncs(tb, api)
+	state.Push(tb)
+	return 1
+}
+
+var api = map[string]glua.LGFunction{
+	"compute_file_md5":  ComputeFileMd5,
+	"is_file_ext":       IsFileExist,
+	"file_size":         GetFileSize,
+	"get_file_name_typ": GetFileNameAndType,
+}

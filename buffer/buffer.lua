@@ -1,0 +1,12 @@
+local buffer = require("buffer")
+
+buf = buffer.NewBuffer()
+print("len:", buf:Len())
+buf:Write("hello world ")
+print("len:", buf:Len())
+local data = buf:Read(6)
+print("data:", data)
+local data = buf:Read(6)
+print("data:", data)
+local data = buf:Read(6)
+print("data:", data)
